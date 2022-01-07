@@ -156,8 +156,8 @@ static void VS_CC rifeCreate(const VSMap* in, VSMap* out, [[maybe_unused]] void*
         auto uhd{ !!vsapi->mapGetInt(in, "uhd", 0, &err) };
         d->sceneChange = !!vsapi->mapGetInt(in, "sc", 0, &err);
 
-        if (model < 0 || model > 2)
-            throw "model must be 0, 1, or 2";
+        if (model < 0 || model > 4)
+            throw "model must be 0-4";
 
         if (gpuId < 0 || gpuId >= ncnn::get_gpu_count())
             throw "invalid GPU device";
@@ -206,14 +206,20 @@ static void VS_CC rifeCreate(const VSMap* in, VSMap* out, [[maybe_unused]] void*
 
         std::string pluginPath{ vsapi->getPluginPath(vsapi->getPluginByID("com.holywu.rife", core)) };
         auto modelPath{ pluginPath.substr(0, pluginPath.rfind('/')) + "/models" };
-        switch (model) {
+        switch (model) { 
         case 0:
             modelPath += "/rife-v3.1";
             break;
-        case 1:
+		case 1:
+			modelPath += "/rife-v3.0";
+			break;
+        case 2:
             modelPath += "/rife-v2.4";
             break;
-        case 2:
+		case 3:
+			modelPath += "/rife-v2";
+			break;
+        case 4:
             modelPath += "/rife-anime";
             break;
         }
@@ -223,7 +229,7 @@ static void VS_CC rifeCreate(const VSMap* in, VSMap* out, [[maybe_unused]] void*
             throw "failed to load model";
         ifs.close();
 
-        d->rife = std::make_unique<RIFE>(gpuId, tta, uhd, 1, model != 2);
+        d->rife = std::make_unique<RIFE>(gpuId, tta, uhd, 1, model != 4);
 
 #ifdef _WIN32
         auto bufferSize{ MultiByteToWideChar(CP_UTF8, 0, modelPath.c_str(), -1, nullptr, 0) };
