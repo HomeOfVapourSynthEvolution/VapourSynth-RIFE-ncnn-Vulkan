@@ -210,15 +210,15 @@ static void VS_CC rifeCreate(const VSMap* in, VSMap* out, [[maybe_unused]] void*
         case 0:
             modelPath += "/rife-v3.1";
             break;
-		case 1:
-			modelPath += "/rife-v3.0";
-			break;
+	case 1:
+	    modelPath += "/rife-v3.0";
+	    break;
         case 2:
             modelPath += "/rife-v2.4";
             break;
-		case 3:
-			modelPath += "/rife-v2";
-			break;
+	case 3:
+	    modelPath += "/rife-v2";
+	    break;
         case 4:
             modelPath += "/rife-anime";
             break;
