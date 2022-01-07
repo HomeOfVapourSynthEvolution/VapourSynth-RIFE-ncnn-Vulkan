@@ -11,8 +11,10 @@ RIFE filter for VapourSynth, based on [rife-ncnn-vulkan](https://github.com/nihu
 
 * model: Model to use.
   * 0 = rife-v3.1
-  * 1 = rife-v2.4
-  * 2 = rife-anime
+  * 1 = rife-v3.0
+  * 2 = rife-v2.4
+  * 3 = rife-v2
+  * 4 = rife-anime
 
 * gpu_id: GPU device to use.
 
@@ -28,7 +30,7 @@ RIFE filter for VapourSynth, based on [rife-ncnn-vulkan](https://github.com/nihu
 
 
 ## Compilation
-Requires `Vulkan SDK`.
+Requires `Vulkan SDK`, `VapourSynth SDK`.
 
 ```
 git submodule update --init --recursive --depth 1
