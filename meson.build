@@ -25,7 +25,8 @@ else
 endif
 
 if get_option('use_system_ncnn')
-  deps += dependency('ncnn', method: 'cmake', modules: ['glslang', 'ncnn', 'OGLCompiler', 'OSDependent', 'SPIRV'])
+  warning('You must use system NCNN with Vulkan support!')
+  deps += dependency('ncnn', method: 'cmake')
 else
   cmake = import('cmake')
 
